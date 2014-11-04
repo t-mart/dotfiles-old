@@ -41,19 +41,24 @@ call pathogen#infect()
 " run :helptags on each directory in ~/.vim/bundle
 Helptags
 
+if has('path_extra')
+  setglobal tags-=./tags tags^=./tags;
+endif
+
 " its it 21st century and im using vim. (not vi)
 set nocompatible
 
-" splits window for found tag
-set sta
-
-" turn on file type detection, plugins, and indenting
-filetype plugin indent on
-"
-" vim default syntax highlighting
-syntax on
+if has('autocmd')
+  " turn on file type detection, plugins, and indenting
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  " vim default syntax highlighting
+  syntax enable
+endif
 
 set t_Co=256
+let g:hybrid_use_Xresources = 1
 colorscheme hybrid
 
 " yank to the right registers
@@ -88,6 +93,10 @@ set visualbell
 
 " command completion menu displayed in statusline
 set wildmenu
+set wildmode longest:full,full
+set wildignore+=tags,.*.un~,*.pyc,.git
+
+set history=1000
 
 " options for insert-mode completion
 "   menu: popup a menu
@@ -124,11 +133,11 @@ set numberwidth=1
 " T    truncate other messages in the middle if the are too long, use ...
 set shortmess=astT
 
-" try to keep 5 lines on the top or bottom of the current line when i scroll
-set scrolloff=5
+" try to keep 3 lines on the top or bottom of the current line when i scroll
+set scrolloff=3
 " if the last line of a window is multiple lines where i can only see some of
 " the lines, display those lines (otherwise vim wouldnt)
-set display=lastline
+set display=lastline,uhex
 
 " show how much ive selected in visual mode
 set showcmd
@@ -241,6 +250,7 @@ set ignorecase
 set smartcase
 
 " Make Esc work faster
+set ttimeout
 set ttimeoutlen=50
 
 " don't use ex mode, annoying
@@ -281,14 +291,6 @@ set encoding=utf-8
 " when making a line a comment, insert a space after the comment string
 let NERDSpaceDelims=1
 
-" Command-T
-let g:CommandTScanDotDirectories = 1
-let g:CommandTNeverShowDotFiles = 1
-let g:CommandTAlwaysShowDotFiles = 1
-let g:CommandTMaxHeight = 20
-" Tell command-t not to scan certain directories
-set wildignore+=.git,.svn
-
 function! FixTrailingWhitespace()
   let _s=@/
   let l:save_cursor = getpos(".")
@@ -325,13 +327,4 @@ augroup myautocmds
   autocmd FileType * if exists("+omnifunc") && &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
   autocmd FileType * if exists("+completefunc") && &completefunc == "" | setlocal completefunc=syntaxcomplete#Complete | endif
   autocmd BufWritePre * :call FixTrailingWhitespace()
-  "this causes issues when im concurrently editing et and noet buffers
-  "autocmd BufWritePre * :call ShowTabsWhenExpandTab()
-augroup END
-
-" insert a space after comment strings in these filetypes
-augroup space_after_comments
-  autocmd!
-  autocmd FileType python,ruby,vim imap # #<Space>
-  autocmd FileType vim imap " "<Space>
 augroup END
