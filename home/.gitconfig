@@ -1,1 +1,31 @@
-/home/tim/code/dotfiles/home/.gitconfig
+[user]
+  name = Tim Martin
+  email = tim@timmart.in
+
+[color]
+  ui = auto
+
+[push]
+  # explicitly type where you're pushing
+  default = nothing
+
+[merge]
+  conflictstyle = diff3
+  tool = vimdiff
+
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+
+[grep]
+  #always show line numbers
+  lineNumber = true
+  #use robust regex patterns
+  extendedRegexp = true
+
+[github]
+  user = t-mart
+
+[alias]
+  logg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%ar)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an' --all
+  loggp = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%ar)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an' --all --first-parent

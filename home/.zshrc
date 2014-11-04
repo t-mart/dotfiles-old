@@ -1,1 +1,1 @@
-/home/tim/code/dotfiles/home/.zshrc
+[[ -r ${HOME}/.zsh/main.zsh ]] && source ${HOME}/.zsh/main.zsh
