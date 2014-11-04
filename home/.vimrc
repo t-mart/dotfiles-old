@@ -329,4 +329,4 @@ augroup myautocmds
   autocmd BufWritePre * :call FixTrailingWhitespace()
 augroup END
 
-set gfn=Inconsolata\ 9
+set gfn=Inconsolata:h9:cANSI
