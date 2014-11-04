@@ -328,3 +328,5 @@ augroup myautocmds
   autocmd FileType * if exists("+completefunc") && &completefunc == "" | setlocal completefunc=syntaxcomplete#Complete | endif
   autocmd BufWritePre * :call FixTrailingWhitespace()
 augroup END
+
+set gfn=Inconsolata\ 9
