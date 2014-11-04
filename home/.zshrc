@@ -1,1 +1,3 @@
-[[ -r ${HOME}/.zsh/main.zsh ]] && source ${HOME}/.zsh/main.zsh
+for conf in ${HOME}/.zsh/*.zsh; do
+  source $conf
+done
