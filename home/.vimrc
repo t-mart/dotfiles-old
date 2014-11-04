@@ -93,7 +93,7 @@ set visualbell
 
 " command completion menu displayed in statusline
 set wildmenu
-set wildmode longest:full,full
+set wildmode=longest:full,full
 set wildignore+=tags,.*.un~,*.pyc,.git
 
 set history=1000
