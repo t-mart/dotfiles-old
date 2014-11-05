@@ -58,8 +58,13 @@ fi
 
 # Change vcs_info formats for the grml prompt. The 2nd format sets up
 # $vcs_info_msg_1_ to contain "zsh: repo-name" used to set our screen title.
-zstyle ':vcs_info:*' actionformats "${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${YELLOW}|${RED}%a${MAGENTA}]${NO_COLOR} " \
-zstyle ':vcs_info:*' formats       "${MAGENTA}(${NO_COLOR}%s${MAGENTA})${YELLOW}-${MAGENTA}[${GREEN}%b${MAGENTA}]${NO_COLOR}%} " \
+# zstyle ':vcs_info:*' stagedstr "${GREEN}+${NO_COLOR}"
+# zstyle ':vcs_info:*' unstagedstr "${YELLOW}+${NO_COLOR}"
+# zstyle ':vcs_info:*' check-for-changes true
+# zstyle ':vcs_info:*' actionformats "(%s)-[%b%c%u|%a]"
+# zstyle ':vcs_info:*' formats "(%s)-[%b%c%u]"
+zstyle ':vcs_info:*' actionformats "%s:%b|%a"
+zstyle ':vcs_info:*' formats "%s:%b"
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat "%b${RED}:${YELLOW}%r"
 
 # Now for the fun part: The grml prompt themes in `promptsys' mode of operation
@@ -198,7 +203,7 @@ function prompt_grml_precmd () {
     emulate -L zsh
     local grmltheme=grml
     local -a left_items right_items
-    left_items=(newline datetime history tty shell-level newline change-root user at host rc path vcs percent)
+    left_items=(newline datetime history tty shell-level vcs newline change-root user at host rc path percent)
 
     prompt_grml_precmd_worker
 }
@@ -208,7 +213,7 @@ grml_prompt_pre_default=(
     datetime          '%B%F{blue}'
     colon             ''
     history           '%B'
-    host              '%B%F{magenta}'
+    host              '%B%F{green}'
     jobs              '%F{red}'
     newline           ''
     path              '%B'
@@ -218,7 +223,7 @@ grml_prompt_pre_default=(
     shell-level       '%B%F{red}'
     tty               '%B%F{yellow}'
     user              '%B%F{green}'
-    vcs               ''
+    vcs               '%B%F{magenta}'
     version           '%F{green}'
 )
 
@@ -234,7 +239,7 @@ grml_prompt_post_default=(
     percent           '%b '
     plat              '%f '
     rc                '%f%b '
-    shell-level       '%f '
+    shell-level       '%f%b '
     tty               '%f '
     user              '%f%b'
     vcs               '%f'
