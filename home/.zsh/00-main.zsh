@@ -946,4 +946,7 @@ fi
 # Execute grep -{-color=auto}
 (( $#grep_options > 0 )) && alias grep='grep '${grep_options:+"${grep_options[*]}"}
 
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
 xsource "${ZDOTDIR}/local.zsh"
