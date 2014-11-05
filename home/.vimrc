@@ -291,7 +291,7 @@ set encoding=utf-8
 " when making a line a comment, insert a space after the comment string
 let NERDSpaceDelims=1
 
-function! FixTrailingWhitespace()
+function! TrimTrailingWhitespace()
   let _s=@/
   let l:save_cursor = getpos(".")
   %s/\s\+$//e
@@ -309,8 +309,8 @@ function! ShowTabsWhenExpandTab()
   endif
 endfunction
 
-" Run :FixTrailingWhitespace to remove end of line white space.
-command! -range=% FixTrailingWhitespace call <SID>FixTrailingWhitespace()
+" Run :TrimTrailingWhitespace to remove end of line white space.
+command! -range=% TrimTrailingWhitespace call <SID>TrimTrailingWhitespace()
 
 augroup myautocmds
   autocmd!
@@ -326,7 +326,7 @@ augroup myautocmds
   autocmd FileType liquid,markdown,text,txt setlocal tw=78 linebreak nolist
   autocmd FileType * if exists("+omnifunc") && &omnifunc == "" | setlocal omnifunc=syntaxcomplete#Complete | endif
   autocmd FileType * if exists("+completefunc") && &completefunc == "" | setlocal completefunc=syntaxcomplete#Complete | endif
-  autocmd BufWritePre * :call FixTrailingWhitespace()
+  autocmd BufWritePre * :call TrimTrailingWhitespace()
 augroup END
 
 set gfn=Inconsolata:h9:cANSI
