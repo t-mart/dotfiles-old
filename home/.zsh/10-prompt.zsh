@@ -63,7 +63,7 @@ fi
 # zstyle ':vcs_info:*' check-for-changes true
 # zstyle ':vcs_info:*' actionformats "(%s)-[%b%c%u|%a]"
 # zstyle ':vcs_info:*' formats "(%s)-[%b%c%u]"
-zstyle ':vcs_info:*' actionformats "%s:%b|%a"
+zstyle ':vcs_info:*' actionformats "%s:%b|${RED}%a${NO_COLOR}"
 zstyle ':vcs_info:*' formats "%s:%b"
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat "%b${RED}:${YELLOW}%r"
 
