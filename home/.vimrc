@@ -206,7 +206,7 @@ set textwidth=80
 set linebreak
 
 " highlight the column after textwidth to give an idea of boundaries
-set colorcolumn
+set colorcolumn=+1
 
 " TODO: figure out how showbreak and listchars=precedes:... interact
 set list
