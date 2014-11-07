@@ -117,6 +117,12 @@ set hlsearch
 " it's put back on when i do another search
 map <silent> <F3> :nohlsearch<CR>
 
+" automatically replace all occurences per line
+set gdefault
+
+" allow visual blocks to be sized intuitively
+set virtualedit+=block
+
 " number the lines in the right margin
 set relativenumber
 " use as few colums for numbering as we can
@@ -170,6 +176,16 @@ set shiftwidth=2
 " " don't use softtabstop (by setting to 0). just indent tabstop spaces
 set softtabstop=2
 
+set shiftround
+
+set undofile
+set backup
+
+set undodir=~/.vim/tmp/undo//
+set backupdir=~/.vim/tmp/backup//
+
+set directory=~/.vim/tmp/swap//
+
 
 " vim formats text for me
 " letter  meaning
@@ -181,16 +197,16 @@ set softtabstop=2
 " n       recognize numbered lists (may not actually work because i use
 "         cindent, not autoindent like docs say
 " j       remove comment leaders when joining
-set formatoptions=rqcon
-if v:version > 730
-  set formatoptions+=j
-endif
+set formatoptions=rqconj
 
 " how long lines should be
 set textwidth=80
 " if we do encounter text > window width, wrap words at word boundaries (not
 " mid-word"
 set linebreak
+
+" highlight the column after textwidth to give an idea of boundaries
+set colorcolumn
 
 " TODO: figure out how showbreak and listchars=precedes:... interact
 set list
@@ -249,9 +265,11 @@ set splitright
 set ignorecase
 set smartcase
 
-" Make Esc work faster
+" Make Esc work faster yadda yagg
 set ttimeout
 set ttimeoutlen=50
+
+set title
 
 " don't use ex mode, annoying
 map Q gq
@@ -279,11 +297,18 @@ set viminfo=!,'10,h,s10
 
 " quick empty line insertion
 " functions defined in vim-unimpaired
-nmap <silent> <C-K> [<Space>
-nmap <silent> <C-J> ]<Space>
+nnoremap <silent> <C-K> [<Space>
+nnoremap <silent> <C-J> ]<Space>
 
-" set the encoding of _this_ file
-set fileencoding=utf-8
+" automatically dont use vim's crazy regexes
+nnoremap / /\v
+vnoremap / /\v
+
+" h is left, l is right...
+" so this is strong H, strong L for beginning and end of line
+noremap H ^
+noremap L g_
+
 " use a good encoding for future edits
 set encoding=utf-8
 
