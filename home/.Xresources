@@ -28,3 +28,18 @@
 ! white
 *color7: #707880
 *color15: #C5C8C6
+
+! font
+URxvt*font: xft:Liberation Mono:pixelsize=11
+URxvt*letterSpace: -2
+
+! click on URLs
+URxvt.perl-ext-common : default,matcher
+URxvt.urlLauncher     : google-chrome
+URxvt.matcher.button  : 1
+
+*fading:                  40
+*fadeColor:               #373B41
+*cursorColor:             #8ABEB7
+*pointerColorBackground:  #B5BD68
+*pointerColorForeground:  #8ABEB7

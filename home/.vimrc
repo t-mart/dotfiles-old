@@ -297,8 +297,8 @@ set viminfo=!,'10,h,s10
 
 " quick empty line insertion
 " functions defined in vim-unimpaired
-nnoremap <silent> <C-K> [<Space>
-nnoremap <silent> <C-J> ]<Space>
+nmap <silent> <C-K> [<Space>
+nmap <silent> <C-J> ]<Space>
 
 " automatically dont use vim's crazy regexes
 nnoremap / /\v
