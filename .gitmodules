@@ -31,3 +31,6 @@
 [submodule "home/.vim/bundle/vim-vinegar"]
 	path = home/.vim/bundle/vim-vinegar
 	url = git://github.com/tpope/vim-vinegar.git
+[submodule "home/.vim/bundle/Vim-Jinja2-Syntax"]
+	path = home/.vim/bundle/Vim-Jinja2-Syntax
+	url = https://github.com/Glench/Vim-Jinja2-Syntax.git
