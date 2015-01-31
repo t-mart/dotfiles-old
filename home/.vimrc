@@ -275,7 +275,9 @@ map Q gq
 " if spell is on, spellcheck in English
 set spelllang=en_us
 " use this dictionary
-set dictionary+=/usr/share/dict/words
+if filereadable("/usr/share/dict/words")
+  set dictionary+=/usr/share/dict/words
+endif
 
 " writes the buffer if its been modified on many commands (see help for them)
 set autowrite
@@ -309,10 +311,6 @@ noremap L g_
 
 " use a good encoding for future edits
 set encoding=utf-8
-
-" NerdCommenter
-" when making a line a comment, insert a space after the comment string
-let NERDSpaceDelims=1
 
 function! TrimTrailingWhitespace()
   let _s=@/
