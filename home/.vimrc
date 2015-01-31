@@ -157,10 +157,8 @@ set backspace=indent,eol,start
 
 " copy indent from current line
 set autoindent
-" " do smart autoindentifing on new lines.
-set smartindent
 " " without cindent, python comments would be pushed to column 0...weird.
-" set cindent
+set cindent
 
 " "Line up function arguments on new lines to the opening paren
 " set cino=(0
