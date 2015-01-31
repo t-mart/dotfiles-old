@@ -33,6 +33,10 @@ path[1,0]=${HOME}/bin
 # some programs that load shells (e.g. tmux) need to know which shell I want.
 export SHELL=$(whence zsh)
 
+# zsh completions
+# https://github.com/zsh-users/zsh-completions
+fpath=(${HOME}/.zsh/zsh-completions/src/ $fpath)
+
 # load .zshrc.pre to give the user the chance to overwrite the defaults
 [[ -r ${ZDOTDIR:-${HOME}}/pre.zsh ]] && source ${ZDOTDIR:-${HOME}}/pre.zsh
 

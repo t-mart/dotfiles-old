@@ -34,3 +34,6 @@
 [submodule "home/.vim/bundle/Vim-Jinja2-Syntax"]
 	path = home/.vim/bundle/Vim-Jinja2-Syntax
 	url = https://github.com/Glench/Vim-Jinja2-Syntax.git
+[submodule "home/.zsh/zsh-completions"]
+	path = home/.zsh/zsh-completions
+	url = git://github.com/zsh-users/zsh-completions.git
