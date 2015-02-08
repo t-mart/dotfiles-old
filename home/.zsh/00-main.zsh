@@ -62,9 +62,6 @@ isutfenv() {
 # check for user, if not running as root set $SUDO to sudo
 (( EUID != 0 )) && SUDO='sudo' || SUDO=''
 
-# go home to have a default starting point
-cd
-
 # autoload wrapper - use this one instead of autoload directly
 function zrcautoload() {
     emulate -L zsh
