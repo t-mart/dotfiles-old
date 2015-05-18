@@ -351,3 +351,16 @@ augroup myautocmds
 augroup END
 
 set gfn=Inconsolata:h9:cANSI
+
+" from http://vim.wikia.com/wiki/switching_case_of_characters
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\v(<\w+>)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
