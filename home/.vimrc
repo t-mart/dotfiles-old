@@ -93,7 +93,7 @@ set visualbell
 
 " command completion menu displayed in statusline
 set wildmenu
-set wildmode=longest:full,full
+set wildmode=full
 set wildignore+=tags,.*.un~,*.pyc,.git
 
 set history=1000
@@ -156,12 +156,12 @@ set showmatch
 set backspace=indent,eol,start
 
 " copy indent from current line
-set autoindent
+" set autoindent
 " " without cindent, python comments would be pushed to column 0...weird.
 set cindent
 
 " "Line up function arguments on new lines to the opening paren
-" set cino=(0
+set cino=(0
 
 " " tabs are actually spaces
 set expandtab
