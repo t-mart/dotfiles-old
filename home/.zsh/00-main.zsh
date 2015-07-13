@@ -555,6 +555,12 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+# http://superuser.com/questions/476532/how-can-i-make-zshs-vi-mode-behave-more-like-bashs-vi-mode
+bindkey "^?" backward-delete-char
+bindkey "^W" backward-kill-word
+bindkey "^H" backward-delete-char      # Control-h also deletes the previous char
+bindkey "^U" backward-kill-line
+
 # The actual terminal setup hooks and bindkey-calls:
 
 # An array to note missing features to ease diagnosis in case of problems.
