@@ -27,8 +27,8 @@ fi
 
 ZDOTDIR=${ZDOTDIR:-${HOME}/.zsh}
 
-path[1,0]=/usr/local/bin
 path[1,0]=/usr/bin
+path[1,0]=/usr/local/bin
 
 # Prefer $HOME/bin executables over systems ones
 path[1,0]=${HOME}/bin
