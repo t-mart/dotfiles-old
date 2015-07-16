@@ -27,6 +27,13 @@ fi
 
 ZDOTDIR=${ZDOTDIR:-${HOME}/.zsh}
 
+# automatically remove duplicates from these arrays
+typeset -U path cdpath fpath manpath
+
+# add to end
+path+=(/usr/local/sbin)
+
+# add to front
 path[1,0]=/usr/bin
 path[1,0]=/usr/local/bin
 
@@ -355,9 +362,6 @@ REPORTTIME=5
 
 # watch for everyone but me and root
 watch=(notme root)
-
-# automatically remove duplicates from these arrays
-typeset -U path cdpath fpath manpath
 
 # Load a few modules
 for mod in parameter complist deltochar mathfunc ; do
