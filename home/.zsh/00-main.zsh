@@ -96,7 +96,8 @@ function zrcautoload() {
 
 # history
 HISTFILE=${ZDOTDIR}/.zhistory
-SAVEHIST=5000
+SAVEHIST=5000 #lines kept in HISTFILE
+HISTSIZE=5000 #lines kept in session
 
 # set some important options (as early as possible)
 
