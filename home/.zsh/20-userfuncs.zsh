@@ -21,14 +21,6 @@ alias lsd='ls -d *(/) '${ls_options:+"${ls_options[*]}"}
 alias lse='ls -d *(/^F) '${ls_options:+"${ls_options[*]}"}
 # Display the ten newest files
 alias lsnew="ls -rtlh *(D.om[1,10]) "${ls_options:+"${ls_options[*]}"}
-# Display the ten oldest files
-alias lsold="ls -rtlh *(D.Om[1,10]) "${ls_options:+"${ls_options[*]}"}
-# Display the ten smallest files
-alias lssmall="ls -Srl *(.oL[1,10]) "${ls_options:+"${ls_options[*]}"}
-# Display the ten newest directories and ten newest .directories
-alias lsnewdir="ls -rthdl *(/om[1,10]) .*(D/om[1,10]) "${ls_options:+"${ls_options[*]}"}
-# Display the ten oldest directories and ten oldest .directories
-alias lsolddir="ls -rthdl *(/Om[1,10]) .*(D/Om[1,10]) "${ls_options:+"${ls_options[*]}"}
 
 venvact () {
   venv_path_file=".ve"

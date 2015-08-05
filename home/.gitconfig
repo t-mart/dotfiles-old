@@ -36,3 +36,6 @@
 [grep]
   lineNumber = true
   patternType = extended
+
+[alias]
+  fix = "!f() { ${EDITOR} `git diff --name-only | uniq`; }; f"
