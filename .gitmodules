@@ -37,3 +37,6 @@
 [submodule "home/.zsh/zsh-completions"]
 	path = home/.zsh/zsh-completions
 	url = git://github.com/zsh-users/zsh-completions.git
+[submodule "home/.vim/bundle/mustache-handlebars"]
+	path = home/.vim/bundle/mustache-handlebars
+	url = https://github.com/mustache/vim-mustache-handlebars.git
