@@ -6,8 +6,10 @@
   ui = auto
 
 [push]
-  # explicitly type where you're pushing
-  default = nothing
+  default = upstream
+
+[branch]
+  autosetuprebase = always
 
 [merge]
   conflictstyle = diff3
