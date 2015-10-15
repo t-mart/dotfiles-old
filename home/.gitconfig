@@ -29,8 +29,10 @@
   user = t-mart
 
 [alias]
-  logg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%ar)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an'
-  loggp = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%ar)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an' --first-parent
+  logg = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%ar)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an'"
+  loggp = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%ar)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an' --first-parent"
+  fix = "!f() { ${EDITOR} `git diff --name-only | uniq`; }; f"
+  subup = "!git submodule update --rebase --remote"
 
 [rerere]
   enabled = true
@@ -39,5 +41,3 @@
   lineNumber = true
   patternType = extended
 
-[alias]
-  fix = "!f() { ${EDITOR} `git diff --name-only | uniq`; }; f"
