@@ -134,7 +134,7 @@ setopt longlistjobs
 # If a pattern for filename generation has no matches, print an error, instead
 # of leaving it unchanged in the argument list. This also applies to file
 # expansion of an initial ~ or =.
-setopt nonomatch
+setopt nomatch
 
 # report the status of backgrounds jobs immediately
 setopt notify
