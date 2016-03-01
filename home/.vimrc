@@ -365,3 +365,16 @@ function! TwiddleCase(str)
   return result
 endfunction
 vnoremap ~ y:call setreg('', TwiddleCase(@"), getregtype(''))<CR>gv""Pgv
+
+" Stamping
+" Sometimes, you want to replace a word on cursor with the contents of a
+" register (i.e. previously yanked text). But, to do that, you first need to
+" delete the word on cursor -- and this places it in the default register,
+" erasing what you wanted to paste in the first place!
+"
+" Enter stamping: just a quick little remap to delete the current word, but
+" place it in the " register (the unnamed register). Then, deleting the current
+" word on cursor doesn't overwrite your content.
+"
+" S is for Stamping
+nnoremap S diw"0P
