@@ -40,3 +40,6 @@
 [submodule "home/.vim/bundle/mustache-handlebars"]
 	path = home/.vim/bundle/mustache-handlebars
 	url = https://github.com/mustache/vim-mustache-handlebars.git
+[submodule "home/.vim/bundle/vim-hybrid-material"]
+	path = home/.vim/bundle/vim-hybrid-material
+	url = https://github.com/kristijanhusak/vim-hybrid-material.git
