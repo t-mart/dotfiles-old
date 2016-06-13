@@ -22,9 +22,3 @@
 [submodule "home/.vim/bundle/vim-hybrid-material"]
 	path = home/.vim/bundle/vim-hybrid-material
 	url = https://github.com/kristijanhusak/vim-hybrid-material.git
-[submodule "home/.zsh/extensions/zsh-autosuggestions"]
-	path = home/.zsh/extensions/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
-[submodule "home/.zsh/extensions/zsh-completions"]
-	path = home/.zsh/extensions/zsh-completions
-	url = https://github.com/zsh-users/zsh-completions.git
