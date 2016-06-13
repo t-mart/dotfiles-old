@@ -26,7 +26,7 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 # ===
 # nvm
 # ===
-export NVM_DIR="/home/tim/.nvm"
+export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # ===
