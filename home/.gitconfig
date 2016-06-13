@@ -32,7 +32,6 @@
 [alias]
   logg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%cr)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an'"
   fix = "!f() { ${EDITOR} `git diff --name-only | uniq`; }; f"
-  subup = "!git submodule update --rebase --remote"
 
 [rerere]
   enabled = true
