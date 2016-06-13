@@ -31,7 +31,9 @@ fi
 (( $#grep_options > 0 )) && alias grep='grep '${grep_options:+"${grep_options[*]}"}
 (( $#ls_options > 0 )) && alias ls='ls '${ls_options:+"${ls_options[*]}"}
 
-TZ=$(cat /etc/timezone)
+if [[ -r /etc/timezone ]]; then
+  TZ=$(cat /etc/timezone)
+fi
 
 if type vim >/dev/null ; then
     export EDITOR=${EDITOR:-vim}
