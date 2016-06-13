@@ -2,20 +2,26 @@
 # zsh completions
 # ===============
 # https://github.com/zsh-users/zsh-completions
-fpath+=${HOME}/.zsh/extensions/zsh-completions/src/
+if [[ -d ${HOME}/.zsh/extensions/zsh-completions/src/ ]]; then
+    fpath+=${HOME}/.zsh/extensions/zsh-completions/src/
+fi
 
 # ===================
 # zsh autosuggestions
 # ===================
 # https://github.com/zsh-users/zsh-autosuggestions
-source ${HOME}/.zsh/extensions/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
-bindkey '^ ' autosuggest-accept
+if [[ -r ${HOME}/.zsh/extensions/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source ${HOME}/.zsh/extensions/zsh-autosuggestions/zsh-autosuggestions.zsh
+  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
+  bindkey '^ ' autosuggest-accept
+fi
 
 # =========
 # homeshick
 # =========
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+if [[ -r $HOME/.homesick/repos/homeshick/homeshick.sh ]]; then
+  source $HOME/.homesick/repos/homeshick/homeshick.sh
+fi
 
 # ==========
 # virtualenv
@@ -26,8 +32,10 @@ VIRTUAL_ENV_DISABLE_PROMPT=1
 # ===
 # nvm
 # ===
-export NVM_DIR="${HOME}/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+if [[ -d "${HOME}/.nvm" ]]; then
+  export NVM_DIR="${HOME}/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+fi
 
 # ===
 # npm
@@ -81,3 +89,12 @@ elif type compctl &>/dev/null; then
   }
   compctl -K _npm_completion npm
 fi
+
+# =====
+# rbenv
+# =====
+if [[ -d $HOME/.rbenv/bin ]]; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+

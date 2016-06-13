@@ -46,7 +46,7 @@ prompt_tim_setup () {
 
     local p_date="${BOLD_WHITE}%D{%FT%T}${NO_COLOR}"
     local p_return_code="↳%(?.${BOLD_GREEN}.${BOLD_RED})%?${NO_COLOR}"
-    local p_user_at_host="${BOLD_GREEN}%n${BOLD_WHITE}@${BOLD_GREEN}%m${NO_COLOR}"
+    local p_user_at_host="${BOLD_GREEN}%n${BOLD_WHITE}@${BOLD_GREEN}%M${NO_COLOR}"
     local p_priv_level="${BOLD_MAGENTA}%#${NO_COLOR}"
     local p_path="%{%U%}${BOLD_BLUE}%~${NO_COLOR}%{%u%}"
 
