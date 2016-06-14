@@ -20,7 +20,7 @@ typeset -ga ls_options
 typeset -ga grep_options
 if ls --help 2> /dev/null | grep -q GNU; then
     ls_options=( --color=auto )
-elif [[ $OSTYPE == freebsd* ]]; then
+elif [[ $OSTYPE == freebsd* || $OSTYPE == darwin* ]]; then
     ls_options=( -G )
 fi
 if grep --help 2> /dev/null | grep -q GNU || \
