@@ -28,11 +28,16 @@ zstyle ':vcs_info:*' stagedstr "${BOLD_GREEN}Δ${NO_COLOR}"
 zstyle ':vcs_info:*' unstagedstr "${BOLD_RED}Δ${NO_COLOR}"
 zstyle ':vcs_info:*' check-for-changes true
 
+set_terminal_title () {
+    print -Pn "\e]0;%n@%M %~\a"
+}
+
 prompt_tim_setup () {
     autoload -Uz vcs_info
     autoload -Uz add-zsh-hook
 
     add-zsh-hook precmd prompt_tim_setup
+    add-zsh-hook precmd set_terminal_title
     vcs_info
 
     # clean out the right prompt
