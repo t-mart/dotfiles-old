@@ -64,3 +64,9 @@ REPORTTIME=5
 if type stty >/dev/null ; then
     stty -ixon
 fi
+
+# The function cdr allows you to change the working directory
+# to a previous working directory from a list maintained automatically.
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':completion:*:*:cdr:*:*' menu selection
