@@ -1,17 +1,19 @@
+extensionPath=${HOME}/.zsh/extensions
+
 # ===============
 # zsh completions
 # ===============
 # https://github.com/zsh-users/zsh-completions
-if [[ -d ${HOME}/.zsh/extensions/zsh-completions/src/ ]]; then
-    fpath+=${HOME}/.zsh/extensions/zsh-completions/src/
+if [[ -d ${extensionPath}/zsh-completions/src/ ]]; then
+    fpath+=${extensionPath}/zsh-completions/src/
 fi
 
 # ===================
 # zsh autosuggestions
 # ===================
 # https://github.com/zsh-users/zsh-autosuggestions
-if [[ -r ${HOME}/.zsh/extensions/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source ${HOME}/.zsh/extensions/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ -r ${extensionPath}/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source ${extensionPath}/zsh-autosuggestions/zsh-autosuggestions.zsh
   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
   bindkey '^ ' autosuggest-accept
 fi
@@ -28,6 +30,15 @@ fi
 # ==========
 # don't mess with my prompt
 VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# =================
+# virtualenvwrapper
+# =================
+if [[ -d $HOME/.virtualenvwrapper ]]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/code
+    source $HOME/.virtualenvwrapper/virtualenvwrapper.sh
+fi
 
 # ===
 # nvm
@@ -94,7 +105,6 @@ fi
 # rbenv
 # =====
 if [[ -d $HOME/.rbenv/bin ]]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
+  export path=(${HOME}/.rbenv/bin $path)
   eval "$(rbenv init -)"
 fi
-
