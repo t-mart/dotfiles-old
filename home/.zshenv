@@ -1,6 +1,6 @@
 pathstoadd=()
 
-local addifexists(){
+addifexists() {
   [[ -d $1 ]] && pathstoadd+=($1)
 }
 
