@@ -18,6 +18,13 @@ if [[ -r ${extensionPath}/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   bindkey '^ ' autosuggest-accept
 fi
 
+# ======
+# awscli
+# ======
+if [[ -r ${extensionPath}/aws_zsh_completer.sh ]]; then
+  source ${extensionPath}/aws_zsh_completer.sh
+fi
+
 # =========
 # homeshick
 # =========
