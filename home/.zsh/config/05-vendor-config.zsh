@@ -115,3 +115,11 @@ if [[ -d $HOME/.rbenv/bin ]]; then
   export path=(${HOME}/.rbenv/bin $path)
   eval "$(rbenv init -)"
 fi
+
+# ===
+# gpg
+# ===
+if type gpg &>/dev/null; then
+  # needed for gpg to display password prompt on the correct tty...the one you're currently using
+  export GPG_TTY=$(tty)
+fi
