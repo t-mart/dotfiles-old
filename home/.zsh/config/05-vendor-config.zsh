@@ -123,3 +123,12 @@ if type gpg &>/dev/null; then
   # needed for gpg to display password prompt on the correct tty...the one you're currently using
   export GPG_TTY=$(tty)
 fi
+
+# =====
+# pyenv
+# =====
+if [[ -d $HOME/.pyenv/bin ]]; then
+  export PYENV_ROOT="$HOME/.pyenv"
+  export path=($PYENV_ROOT/bin $path)
+  eval "$(pyenv init -)"
+fi
