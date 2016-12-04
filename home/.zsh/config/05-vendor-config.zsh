@@ -119,6 +119,18 @@ fi
 # =====
 if [[ -d $HOME/.pyenv/bin ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
-  export path=($PYENV_ROOT/bin $path)
+  export path=(${PYENV_ROOT}/bin $path)
   eval "$(pyenv init -)"
+fi
+
+# ===
+# vim
+# ===
+if type vim &>/dev/null; then
+  # needed for backup/swap file storage
+  for vimdir in undo backup swap; do
+      if [[ ! -d $HOME/.vim/$vimdir ]]; then
+        mkdir -p $HOME/.vim/$vimdir
+      fi
+  done
 fi

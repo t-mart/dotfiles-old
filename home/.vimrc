@@ -180,10 +180,10 @@ set shiftround
 set undofile
 set backup
 
-set undodir=~/.vim/tmp/undo//
-set backupdir=~/.vim/tmp/backup//
+set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup//
 
-set directory=~/.vim/tmp/swap//
+set directory=~/.vim/swap//
 
 
 " vim formats text for me
