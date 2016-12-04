@@ -8,16 +8,6 @@ if [[ -d ${extensionPath}/zsh-completions/src/ ]]; then
     fpath+=${extensionPath}/zsh-completions/src/
 fi
 
-# ===================
-# zsh autosuggestions
-# ===================
-# https://github.com/zsh-users/zsh-autosuggestions
-if [[ -r ${extensionPath}/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source ${extensionPath}/zsh-autosuggestions/zsh-autosuggestions.zsh
-  ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
-  bindkey '^ ' autosuggest-accept
-fi
-
 # ======
 # awscli
 # ======
