@@ -32,34 +32,50 @@ set_terminal_title () {
     print -Pn "\e]0;%n@%M %~\a"
 }
 
+prompt_tim_precmd () {
+    vcs_info
+
+    print -P
+    print -P ${p_date} ${p_user_at_host} ${vcs_info_msg_0_}
+}
+
 prompt_tim_setup () {
+
+    p_date="${BOLD_WHITE}%D{%FT%T}${NO_COLOR}"
+    p_return_code="↳%(?.${BOLD_GREEN}.${BOLD_RED})%?${NO_COLOR}"
+    p_user_at_host="${BOLD_GREEN}%n${BOLD_WHITE}@${BOLD_GREEN}%M${NO_COLOR}"
+    p_priv_level="${BOLD_MAGENTA}%#${NO_COLOR}"
+    p_path="%{%U%}${BOLD_BLUE}%~${NO_COLOR}%{%u%}"
+
     autoload -Uz vcs_info
     autoload -Uz add-zsh-hook
 
-    add-zsh-hook precmd prompt_tim_setup
+    add-zsh-hook precmd prompt_tim_precmd
     add-zsh-hook precmd set_terminal_title
-    vcs_info
 
-    # clean out the right prompt
-    unset RPROMPT
+    PS1="${p_path} ${p_return_code} ${p_priv_level} "
     # when the shell needs more information to complete a command.
     PS2="${MAGENTA}%_ ⏩${NO_COLOR} "
     # selection prompt used within a select loop.
     PS3="?# "
     # the execution trace prompt (setopt xtrace).
     PS4="+%N:%i:%_> "
-
-    local p_date="${BOLD_WHITE}%D{%FT%T}${NO_COLOR}"
-    local p_return_code="↳%(?.${BOLD_GREEN}.${BOLD_RED})%?${NO_COLOR}"
-    local p_user_at_host="${BOLD_GREEN}%n${BOLD_WHITE}@${BOLD_GREEN}%M${NO_COLOR}"
-    local p_priv_level="${BOLD_MAGENTA}%#${NO_COLOR}"
-    local p_path="%{%U%}${BOLD_BLUE}%~${NO_COLOR}%{%u%}"
-
-    PS1="
-${p_date} ${p_user_at_host} ${vcs_info_msg_0_}
-${p_path} ${p_return_code} ${p_priv_level} "
 }
 
 prompt_themes+=( tim )
 
 prompt tim
+
+# Ensure that the prompt is redrawn when the terminal size changes.
+TRAPWINCH() {
+  zle && zle -R
+}
+
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select

@@ -217,6 +217,8 @@ if type vim >/dev/null ; then
 elif type vi >/dev/null ; then
     export EDITOR=vi
 fi
+# for vim mode in the zle, wait 0.1 seconds to switch to normal mode (not 0.4, the default)
+export KEYTIMEOUT=1
 
 # ==========
 # virtualenv

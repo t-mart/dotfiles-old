@@ -1,3 +1,8 @@
+# vim mode
+autoload -Uz edit-command-line
+bindkey -M vicmd 'v' edit-command-line
+bindkey -v
+
 # use up and down to scroll through history, or if line is not blank, history whose prefix matches current line
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
