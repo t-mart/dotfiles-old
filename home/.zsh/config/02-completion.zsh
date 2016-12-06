@@ -1,8 +1,5 @@
 #!/usr/bin/env zsh
 
-autoload -U compinit
-compinit
-
 # activate color-completion
 zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 
@@ -79,3 +76,6 @@ zstyle ':completion:hist-complete:*' completer _history
 mkdir -p ${HOME}/.zcache && \
  zstyle ':completion:*' use-cache yes && \
  zstyle ':completion::complete:*' cache-path $ZDOTDIR/.zcache/
+
+# cdr completion
+zstyle ':completion:*:*:cdr:*:*' menu selection
