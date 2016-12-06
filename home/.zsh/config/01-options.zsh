@@ -1,49 +1,61 @@
-setopt append_history
-setopt extended_history
-setopt hist_expire_dups_first
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt share_history
-setopt hist_verify
+# Documentation: http://zsh.sourceforge.net/Doc/Release/Options.html
 
-setopt auto_cd
-setopt extended_glob
-setopt longlistjobs
-setopt nomatch
+# Changing Directories
+######################
+setopt AUTO_CD
+setopt AUTO_PUSHD
 
-# report the status of backgrounds jobs immediately
-setopt notify
+# Completion
+############
+setopt HASH_LIST_ALL
+setopt COMPLETE_IN_WORD
+setopt MENUCOMPLETE
 
-# whenever a command completion is attempted, make sure the entire command path
-# is hashed first.
-setopt hash_list_all
+# Expansion and Globbing
+########################
+setopt EXTENDED_GLOB
+setopt NOMATCH
+setopt GLOB_DOTS
+setopt GLOB_STAR_SHORT
 
-# not just at the end
-setopt completeinword
+# History
+#########
+setopt APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+setopt HIST_VERIFY
 
-# Don't send SIGHUP to background processes when the shell exits.
-setopt nohup
+# Initialisation
+################
 
-# make cd push the old directory onto the directory stack.
-setopt auto_pushd
+# Input/Output
+##############
+setopt INTERACTIVE_COMMENTS
+setopt NO_CORRECT
+setopt NO_CORRECT_ALL
 
-# avoid "beep"ing
-setopt nobeep
+# Job Control
+#############
+setopt LONG_LIST_JOBS
+setopt CHECK_JOBS
+setopt HUP
+setopt NOTIFY
 
-# its okay to have the stack contain the same dir
-setopt no_pushd_ignore_dups
+# Prompting
+###########
 
-# match dotfiles plz
-setopt globdots
+# Scripts and Functions
+#######################
 
-# don't error out when unset parameters are used
-setopt unset
+# Shell Emulation
+#################
 
-# allow comments in interactive shells
-setopt interactivecomments
+# Shell State
+#############
 
-# don't correct stuff, dammit
-setopt no_correct
-setopt no_correct_all
-
-setopt menucomplete
+# Zle
+#####
+setopt NOBEEP
