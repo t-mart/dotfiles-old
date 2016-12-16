@@ -42,7 +42,8 @@ prompt_tim_precmd () {
 prompt_tim_setup () {
 
     p_date="${BOLD_WHITE}%D{%FT%T}${NO_COLOR}"
-    p_return_code="↳%(?.${BOLD_GREEN}.${BOLD_RED})%?${NO_COLOR}"
+    p_return_code="↳ %(?.${BOLD_GREEN}.${BOLD_RED})%?${NO_COLOR}"
+    p_history_number="H${BOLD_YELLOW}%!${NO_COLOR}"
     p_user_at_host="${BOLD_GREEN}%n${BOLD_WHITE}@${BOLD_GREEN}%M${NO_COLOR}"
     p_priv_level="${BOLD_MAGENTA}%#${NO_COLOR}"
     p_path="%{%U%}${BOLD_BLUE}%~${NO_COLOR}%{%u%}"
@@ -53,7 +54,7 @@ prompt_tim_setup () {
     add-zsh-hook precmd prompt_tim_precmd
     add-zsh-hook precmd set_terminal_title
 
-    PS1="${p_path} ${p_return_code} ${p_priv_level} "
+    PS1="${p_path} ${p_return_code} ${p_history_number} ${p_priv_level} "
     # when the shell needs more information to complete a command.
     PS2="${MAGENTA}%_ ⏩${NO_COLOR} "
     # selection prompt used within a select loop.
