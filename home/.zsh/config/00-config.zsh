@@ -52,6 +52,7 @@ fi
 [[ -d ${ZSH_FUNC_PATH} ]] && fpath+=${ZSH_FUNC_PATH}
 for func in ${ZSH_FUNC_PATH}/*; do
   autoload -Uz ${func:t}
+  compinit
 done
 
 # ===
@@ -120,10 +121,11 @@ compctl -K _npm_completion npm
 # ===
 # nvm
 # ===
-if [[ -d "${HOME}/.nvm" ]]; then
-  export NVM_DIR="${HOME}/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-fi
+# nvm sorry, you are too slow
+#if [[ -d "${HOME}/.nvm" ]]; then
+#  export NVM_DIR="${HOME}/.nvm"
+#  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+#fi
 
 # ===
 # pip
