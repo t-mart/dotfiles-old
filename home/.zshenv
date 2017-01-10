@@ -15,5 +15,7 @@ addifexists /sbin
 # add to path
 path=($pathstoadd $path)
 
+#
+
 # remove dupes
 typeset -U path cdpath fpath manpath

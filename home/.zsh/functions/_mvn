@@ -313,7 +313,7 @@ _mvn_plugin_goals() {
   local ret=1 plugin="$@[-1]" update_policy
 
   zstyle -s ":completion:${curcontext}:" cache-policy update_policy
-  [[ -z "$update_policy" ]] && zstyle ":completion:${curcontext}:" cache-policy _mvn_goals_caching_policy 
+  [[ -z "$update_policy" ]] && zstyle ":completion:${curcontext}:" cache-policy _mvn_goals_caching_policy
 
   unset _goals
   if ( [[ ${+_goals} -eq 0 ]] || _cache_invalid "mvn/plugins/${plugin}" ) && ! _retrieve_cache "mvn/plugins/${plugin}"; then
@@ -605,7 +605,7 @@ _mvn_goals_caching_policy() {
 
 (( $+functions[_mvn_properties_caching_policy] )) ||
 _mvn_properties_caching_policy() {
-  _mvn_goals_caching_policy 
+  _mvn_goals_caching_policy
 }
 
 (( $+functions[_mvn_groupIds_caching_policy] )) ||
@@ -619,7 +619,7 @@ _mvn_profiles_caching_policy() {
   local cached_file="${1#$(__mvn_get_cache_dir)}"
   [[ -f $cached_file && $cached_file -nt "$1" ]] && return 0
 
-  # Rebuild if cache is older than one week.  
+  # Rebuild if cache is older than one week.
   local -a oldp
   oldp=( "$1"(Nmw+1) )
   (( $#oldp )) && return 0

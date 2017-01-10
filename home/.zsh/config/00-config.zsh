@@ -74,6 +74,7 @@ export HISTSIZE=10000
 # =========
 if [[ -r $HOME/.homesick/repos/homeshick/homeshick.sh ]]; then
   source $HOME/.homesick/repos/homeshick/homeshick.sh
+  fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 fi
 
 # ====
@@ -99,38 +100,7 @@ export REPORTTIME=5
 # npm
 # ===
 # npm command completion script
-if type complete &>/dev/null; then
-  _npm_completion () {
-    local words cword
-    if type _get_comp_words_by_ref &>/dev/null; then
-      _get_comp_words_by_ref -n = -n @ -w words -i cword
-    else
-      cword="$COMP_CWORD"
-      words=("${COMP_WORDS[@]}")
-    fi
-
-    local si="$IFS"
-    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           npm completion -- "${words[@]}" \
-                           2>/dev/null)) || return $?
-    IFS="$si"
-  }
-  complete -o default -F _npm_completion npm
-elif type compdef &>/dev/null; then
-  _npm_completion() {
-    local si=$IFS
-    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                 COMP_LINE=$BUFFER \
-                 COMP_POINT=0 \
-                 npm completion -- "${words[@]}" \
-                 2>/dev/null)
-    IFS=$si
-  }
-  compdef _npm_completion npm
-elif type compctl &>/dev/null; then
-  _npm_completion () {
+_npm_completion () {
     local cword line point words si
     read -Ac words
     read -cn cword
@@ -144,9 +114,8 @@ elif type compctl &>/dev/null; then
                        npm completion -- "${words[@]}" \
                        2>/dev/null)) || return $?
     IFS="$si"
-  }
-  compctl -K _npm_completion npm
-fi
+}
+compctl -K _npm_completion npm
 
 # ===
 # nvm
@@ -232,7 +201,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 if [[ -d $HOME/.virtualenvwrapper ]]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/code
-    source $HOME/.virtualenvwrapper/virtualenvwrapper.sh
+    source $HOME/.virtualenvwrapper/virtualenvwrapper.sh 2>/dev/null
 fi
 
 # ===
@@ -247,11 +216,3 @@ XDG_DATA_HOME=$HOME/.local/share
 for xdgdir in $XDG_CACHE_HOME $XDG_CONFIG_HOME $XDG_DATA_HOME; do
     mkdir -p $xdgdir
 done
-
-# ===============
-# zsh completions
-# ===============
-# https://github.com/zsh-users/zsh-completions
-if [[ -d ${ZSH_EXTENSION_PATH}/zsh-completions/src/ ]]; then
-    fpath+=${ZSH_EXTENSION_PATH}/zsh-completions/src/
-fi
