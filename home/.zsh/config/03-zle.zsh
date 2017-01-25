@@ -11,6 +11,9 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
 
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+
 # http://superuser.com/questions/476532/how-can-i-make-zshs-vi-mode-behave-more-like-bashs-vi-mode
 bindkey "^?" backward-delete-char
 bindkey "^W" backward-kill-word
