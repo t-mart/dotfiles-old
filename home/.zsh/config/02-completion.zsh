@@ -24,7 +24,7 @@ zstyle ':completion:*'                 matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:matches'         group 'yes'
 zstyle ':completion:*'                 group-name ''
 
-zstyle ':completion:*'               menu select=5
+zstyle ':completion:*'                 menu select=5
 
 zstyle ':completion:*:messages'        format '%d'
 zstyle ':completion:*:options'         auto-description '%d'
