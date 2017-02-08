@@ -72,6 +72,19 @@ zstyle ':completion:*' rehash true
 
 zstyle ':completion:hist-complete:*' completer _history
 
+# Prettier completion for processes
+zstyle ':completion:*:*:*:*:processes' force-list always
+zstyle ':completion:*:*:*:*:processes' menu yes select
+zstyle ':completion:*:*:*:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,args -w -w"
+
+# Use ls-colors for path completions
+function _set-list-colors() {
+	zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+	unfunction _set-list-colors
+}
+sched 0 _set-list-colors  # deferred since LC_COLORS might not be available yet
+
 # caching
 mkdir -p ${HOME}/.zcache && \
  zstyle ':completion:*' use-cache yes && \
