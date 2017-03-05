@@ -121,11 +121,13 @@ compctl -K _npm_completion npm
 # ===
 # nvm
 # ===
-# nvm sorry, you are too slow
-#if [[ -d "${HOME}/.nvm" ]]; then
-#  export NVM_DIR="${HOME}/.nvm"
-#  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-#fi
+# nvm _is_ slow to load, but it's really node's fault:
+# https://github.com/creationix/nvm/issues/703
+# instead, to workaround, adding --no-use to the line that source nvm.sh, and manually running nvm use when needed
+if [[ -d "${HOME}/.nvm" ]]; then
+  export NVM_DIR="${HOME}/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
+fi
 
 # ===
 # pip
