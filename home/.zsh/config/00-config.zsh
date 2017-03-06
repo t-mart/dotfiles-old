@@ -17,6 +17,17 @@ if [[ -r ${ZSH_EXTENSION_PATH}/aws_zsh_completer.sh ]]; then
   source ${ZSH_EXTENSION_PATH}/aws_zsh_completer.sh
 fi
 
+# =========
+# coreutils
+# =========
+# See http://apple.stackexchange.com/a/69332
+if [[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]]; then
+    export path=("/usr/local/opt/coreutils/libexec/gnubin" $path)
+fi
+if [[ -d "/usr/local/opt/coreutils/libexec/gnuman" ]]; then
+    export manpath=("/usr/local/opt/coreutils/libexec/gnuman" $path)
+fi
+
 # ===
 # cdr
 # ===
