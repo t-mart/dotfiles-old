@@ -60,11 +60,14 @@ fi
 # functions
 # =========
 # a place to add functions, where the name of the function is the name of the file
-[[ -d ${ZSH_FUNC_PATH} ]] && fpath+=${ZSH_FUNC_PATH}
-for func in ${ZSH_FUNC_PATH}/*; do
-  autoload -Uz ${func:t}
-  compinit
-done
+if [[ -d ${ZSH_FUNC_PATH} ]]; then
+    fpath=(${ZSH_FUNC_PATH} $fpath)
+    for func in ${ZSH_FUNC_PATH}/*; do
+        autoload -Uz ${func:t}
+        compinit
+    done
+fi
+
 
 # ===
 # gpg
