@@ -1,14 +1,12 @@
-
-##############################################
-# A place for things that must be done first #
-##############################################
-
-ZSH_HOME_PATH=${HOME}/.zsh
-ZSH_EXTENSION_PATH=${HOME}/.zsh/extensions
-ZSH_FUNC_PATH=${ZSH_HOME_PATH}/functions
-
-autoload -U compinit
-compinit
+# A common theme here is lazy loading. Instead of running compute-heavy files on startup to set up certain
+# commands (e.g. nvm, virtualenvwrapper), we defer that to when the user actually runs the command.
+# This is done by shimming the command with a function that:
+#   1. does the expensive sourcing/loading (e.g. command pyenv)
+#   1a. this sourcing/loading replaces the shim in further uses
+#   2. passes the arguments of the shim onto a new invocation of the real command
+# Too often are we paying the price in wait time for loading a command that will never be used in that
+# terminal session!
+# More info here: https://kev.inburke.com/kevin/profiling-zsh-startup-time/
 
 # ======
 # awscli
@@ -56,19 +54,6 @@ fi
 (( $#grep_options > 0 )) && alias grep='grep '${grep_options:+"${grep_options[*]}"}
 (( $#ls_options > 0 )) && alias ls='ls '${ls_options:+"${ls_options[*]}"}
 
-# =========
-# functions
-# =========
-# a place to add functions, where the name of the function is the name of the file
-if [[ -d ${ZSH_FUNC_PATH} ]]; then
-    fpath=(${ZSH_FUNC_PATH} $fpath)
-    for func in ${ZSH_FUNC_PATH}/*; do
-        autoload -Uz ${func:t}
-        compinit
-    done
-fi
-
-
 # ===
 # gpg
 # ===
@@ -77,19 +62,14 @@ if type gpg &>/dev/null; then
   export GPG_TTY=$(tty)
 fi
 
-# =======
-# history
-# =======
-export HISTFILE=${HOME}/.zsh_history
-export SAVEHIST=10000
-export HISTSIZE=10000
-
 # =========
 # homeshick
 # =========
 if [[ -r $HOME/.homesick/repos/homeshick/homeshick.sh ]]; then
-  source $HOME/.homesick/repos/homeshick/homeshick.sh
-  fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+    homeshick () {
+        source $HOME/.homesick/repos/homeshick/homeshick.sh
+        homeshick $@
+    }
 fi
 
 # ====
@@ -104,12 +84,6 @@ export LESS_TERMCAP_ue=$'\E[0m'         # start underline
 export LESS_TERMCAP_me=$'\E[0m'         # stop bold, blink, underline
 export LESS_TERMCAP_se=$'\E[0m'         # stop standout
 export LESS_TERMCAP_us=$'\E[01;32m'     # stop underline
-
-# ==============
-# job management
-# ==============
-# report about cpu-/system-/user-time of command if running longer than 5 seconds
-export REPORTTIME=5
 
 # ===
 # npm
@@ -135,12 +109,12 @@ compctl -K _npm_completion npm
 # ===
 # nvm
 # ===
-# nvm _is_ slow to load, but it's really node's fault:
-# https://github.com/creationix/nvm/issues/703
-# instead, to workaround, adding --no-use to the line that source nvm.sh, and manually running nvm use when needed
 if [[ -d "${HOME}/.nvm" ]]; then
-  export NVM_DIR="${HOME}/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" --no-use
+    export NVM_DIR="${HOME}/.nvm"
+    nvm() {
+        [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+        nvm $@
+    }
 fi
 
 # ===
@@ -162,7 +136,10 @@ compctl -K _pip_completion pip
 if [[ -d $HOME/.pyenv/bin ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
   export path=(${PYENV_ROOT}/bin $path)
-  eval "$(pyenv init -)"
+  pyenv() {
+    eval "$(command pyenv init -)"
+    pyenv $@
+  }
 fi
 
 
@@ -171,7 +148,10 @@ fi
 # =====
 if [[ -d $HOME/.rbenv/bin ]]; then
   export path=(${HOME}/.rbenv/bin $path)
-  eval "$(rbenv init -)"
+  rbenv() {
+    eval "$(command rbenv init -)"
+    rbenv $@
+  }
 fi
 
 # ====
@@ -181,13 +161,6 @@ fi
 # (which btw, can be unfrozen with Ctrl-Q)
 if type stty >/dev/null ; then
     stty -ixon
-fi
-
-# ==
-# TZ
-# ==
-if [[ -r /etc/timezone ]]; then
-  TZ=$(cat /etc/timezone)
 fi
 
 # ===
@@ -216,10 +189,15 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # =================
 # virtualenvwrapper
 # =================
-if [[ -d $HOME/.virtualenvwrapper ]]; then
+if [[ -r $HOME/.virtualenvwrapper ]]; then
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/code
-    source $HOME/.virtualenvwrapper/virtualenvwrapper.sh 2>/dev/null
+    source "$HOME/.virtualenvwrapper/virtualenvwrapper_lazy.sh" 2>/dev/null
+    # Warning about lazy script http://virtualenvwrapper.readthedocs.io/en/latest/install.html#lazy-loading
+    # "When the lazy-loading version of the startup script is used, tab-completion of arguments to
+    # virtualenvwrapper commands (such as environment names) is not enabled until after the first
+    # command has been run. For example, tab completion of environments does not work for the first
+    # instance of workon."
 fi
 
 # ===

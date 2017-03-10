@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+
 # activate color-completion
 zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 
