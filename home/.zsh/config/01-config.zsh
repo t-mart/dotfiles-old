@@ -15,6 +15,13 @@ if [[ -r ${ZSH_EXTENSION_PATH}/aws_zsh_completer.sh ]]; then
   source ${ZSH_EXTENSION_PATH}/aws_zsh_completer.sh
 fi
 
+# ========
+# autojump
+# ========
+if [[ -s "$HOME/.autojump/etc/profile.d/autojump.sh" ]]; then
+    j jc jo jco() { source "$HOME/.autojump/etc/profile.d/autojump.sh"; $funcstack[1] "$@" }
+fi
+
 # =========
 # coreutils
 # =========
