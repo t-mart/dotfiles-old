@@ -145,6 +145,7 @@ if [[ -d $HOME/.pyenv/bin ]]; then
   export path=(${PYENV_ROOT}/bin $path)
   pyenv() {
     eval "$(command pyenv init -)"
+    eval "$(command pyenv virtualenv-init -)"
     pyenv $@
   }
 fi
@@ -193,19 +194,6 @@ export KEYTIMEOUT=1
 # don't mess with my prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-# =================
-# virtualenvwrapper
-# =================
-if [[ -r $HOME/.virtualenvwrapper ]]; then
-    export WORKON_HOME=$HOME/.virtualenvs
-    export PROJECT_HOME=$HOME/code
-    source "$HOME/.virtualenvwrapper/virtualenvwrapper_lazy.sh" 2>/dev/null
-    # Warning about lazy script http://virtualenvwrapper.readthedocs.io/en/latest/install.html#lazy-loading
-    # "When the lazy-loading version of the startup script is used, tab-completion of arguments to
-    # virtualenvwrapper commands (such as environment names) is not enabled until after the first
-    # command has been run. For example, tab completion of environments does not work for the first
-    # instance of workon."
-fi
 
 # ===
 # xdg
