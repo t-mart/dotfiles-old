@@ -141,13 +141,24 @@ compctl -K _pip_completion pip
 # pyenv
 # =====
 if [[ -d $HOME/.pyenv/bin ]]; then
-  export PYENV_ROOT="$HOME/.pyenv"
-  export path=(${PYENV_ROOT}/bin $path)
-  pyenv() {
-    eval "$(command pyenv init -)"
-    eval "$(command pyenv virtualenv-init -)"
-    pyenv $@
-  }
+    export PYENV_ROOT="$HOME/.pyenv"
+    export path=(${PYENV_ROOT}/bin $path)
+    pyenv() {
+        eval "$(command pyenv init -)"
+        eval "$(command pyenv virtualenv-init -)"
+        pyenv $@
+    }
+
+    for shim in "${PYENV_ROOT}"/shims/*; do
+        $(basename $shim) () {
+            eval "$(command pyenv init -)"
+            eval "$(command pyenv virtualenv-init -)"
+            for unshim in "${PYENV_ROOT}"/shims/*; do
+                unset -f $(basename $unshim)
+            done
+            pyenv exec $0 $@
+        }
+    done
 fi
 
 
