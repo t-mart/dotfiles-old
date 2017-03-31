@@ -19,7 +19,7 @@ fi
 # autojump
 # ========
 if [[ -s "$HOME/.autojump/etc/profile.d/autojump.sh" ]]; then
-    j jc jo jco() { source "$HOME/.autojump/etc/profile.d/autojump.sh"; $funcstack[1] "$@" }
+    j jc jo jco() { source "$HOME/.autojump/etc/profile.d/autojump.sh"; $0 $@ }
 fi
 
 # =========
@@ -66,7 +66,7 @@ fi
 # ===
 if type gpg &>/dev/null; then
   # needed for gpg to display password prompt on the correct tty...the one you're currently using
-  export GPG_TTY=$(tty)
+  export GPG_TTY=$TTY
 fi
 
 # =========
@@ -149,16 +149,14 @@ if [[ -d $HOME/.pyenv/bin ]]; then
         pyenv $@
     }
 
-    for shim in "${PYENV_ROOT}"/shims/*; do
-        $(basename $shim) () {
-            eval "$(command pyenv init -)"
-            eval "$(command pyenv virtualenv-init -)"
-            for unshim in "${PYENV_ROOT}"/shims/*; do
-                unset -f $(basename $unshim)
-            done
-            pyenv exec $0 $@
-        }
-    done
+    shims=("${PYENV_ROOT}"/shims/*(:t))
+
+    $shims () {
+        unset -f $shims
+        eval "$(command pyenv init -)"
+        eval "$(command pyenv virtualenv-init -)"
+        pyenv exec $0 $@
+    }
 fi
 
 
@@ -186,10 +184,8 @@ fi
 # vim
 # ===
 if type vim &>/dev/null; then
-  # needed for backup/swap file storage
-  for vimdir in undo backup swap; do
-    mkdir -p $HOME/.vim/$vimdir
-  done
+    # needed for backup/swap file storage
+    mkdir -p $HOME/.vim/undo $HOME/.vim/backup $HOME/.vim/swap
 fi
 if type vim >/dev/null ; then
     export EDITOR=vim
@@ -205,7 +201,6 @@ export KEYTIMEOUT=1
 # don't mess with my prompt
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-
 # ===
 # xdg
 # ===
@@ -215,6 +210,4 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 XDG_CONFIG_HOME=$HOME/.config/
 XDG_CACHE_HOME=$HOME/.cache/
 XDG_DATA_HOME=$HOME/.local/share
-for xdgdir in $XDG_CACHE_HOME $XDG_CONFIG_HOME $XDG_DATA_HOME; do
-    mkdir -p $xdgdir
-done
+mkdir -p $XDG_CACHE_HOME $XDG_CONFIG_HOME $XDG_DATA_HOME
