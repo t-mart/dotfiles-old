@@ -17,6 +17,7 @@ setopt MENUCOMPLETE
 # Expansion and Globbing
 ########################
 setopt EXTENDED_GLOB
+setopt EQUALS
 setopt NOMATCH
 setopt GLOB_DOTS
 setopt GLOB_STAR_SHORT
