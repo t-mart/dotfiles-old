@@ -13,4 +13,4 @@ Session.vim
 .ve
 .idea
 *.iml
-
+.python-version
