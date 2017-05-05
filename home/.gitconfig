@@ -30,7 +30,7 @@
   user = t-mart
 
 [alias]
-  logg = "log --graph --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%cr)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an'"
+  logg = "log --graph --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%cr)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an (%G?)%C(reset)'"
   reflogg = "reflog --format=format:'%C(bold green)%h%C(reset) - %C(bold yellow)%gd%C(reset) %C(auto)%gs%C(reset) - %C(cyan)(%cr) %C(reset)%C(auto)%d%C(reset)%n  ↳ %C(white)%s%C(reset) %C(dim white)- %gn'"
   fix = "!f() { ${EDITOR} `git diff --name-only | uniq`; }; f"
 
@@ -46,3 +46,6 @@
 
 [diff]
   compactionHeuristic = true
+
+[commit]
+  gpgSign = true
