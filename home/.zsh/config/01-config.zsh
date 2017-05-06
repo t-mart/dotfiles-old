@@ -124,6 +124,14 @@ if [[ -d "${HOME}/.nvm" ]]; then
     }
 fi
 
+# ==========================
+# pbcopy / pbpaste for Linux
+# ==========================
+if [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
+    alias pbcopy='xclip -selection clipboard'
+    alias pbpaste='xclip -selection clipboard -o'
+fi
+
 # ===
 # pip
 # ===
