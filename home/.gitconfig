@@ -48,4 +48,7 @@
   compactionHeuristic = true
 
 [commit]
-  gpgSign = true
+  ; gpgSign = true
+
+[gpg]
+  ; program = gpg1
