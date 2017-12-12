@@ -61,6 +61,17 @@ fi
 (( $#grep_options > 0 )) && alias grep='grep '${grep_options:+"${grep_options[*]}"}
 (( $#ls_options > 0 )) && alias ls='ls '${ls_options:+"${ls_options[*]}"}
 
+# =====================
+# google cloud platform
+# =====================
+if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then
+   source "${HOME}/google-cloud-sdk/path.zsh.inc"
+fi
+
+if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then
+   source "${HOME}/google-cloud-sdk/completion.zsh.inc"
+fi
+
 # ===
 # gpg
 # ===
