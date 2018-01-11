@@ -9,6 +9,10 @@
   default = upstream
   followTags = true
 
+[pull]
+  ff = only
+  rebase = true
+
 [branch]
   autosetuprebase = always
 
