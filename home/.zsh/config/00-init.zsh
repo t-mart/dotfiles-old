@@ -104,3 +104,6 @@ export REPORTTIME=5
 if [[ -r /etc/timezone ]]; then
   TZ=$(cat /etc/timezone)
 fi
+
+export NULLCMD=cat
+export READNULLCMD=less
