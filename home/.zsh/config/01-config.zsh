@@ -45,7 +45,15 @@ add-zsh-hook chpwd chpwd_recent_dirs
 # dircolors / ls
 # ==============
 # color setup for ls:
-type dircolors > /dev/null && eval $(dircolors -b)
+local DIRCOLORSFILE=${ZSH_HOME_PATH}/dircolors-database
+if type dircolors >/dev/null; then
+  if [[ -a "${DIRCOLORSFILE}" ]]; then
+    eval $(dircolors "${DIRCOLORSFILE}")
+  else
+    eval $(dircolors -b)
+  fi
+fi
+
 typeset -ga ls_options
 typeset -ga grep_options
 if ls --help 2> /dev/null | grep -q GNU; then
@@ -204,7 +212,7 @@ fi
 # ===
 if type vim &>/dev/null; then
     # needed for backup/swap file storage
-    mkdir -p $HOME/.vim/undo $HOME/.vim/backup $HOME/.vim/swap
+    mkdir -p $HOME/.vim/{undo,backup,swap}
 fi
 if type vim >/dev/null ; then
     export EDITOR=vim
