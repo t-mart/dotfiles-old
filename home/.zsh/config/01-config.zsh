@@ -27,10 +27,10 @@ fi
 # =========
 # See http://apple.stackexchange.com/a/69332
 if [[ -d "/usr/local/opt/coreutils/libexec/gnubin" ]]; then
-    export path=("/usr/local/opt/coreutils/libexec/gnubin" $path)
+    export path=( $path "/usr/local/opt/coreutils/libexec/gnubin" )
 fi
 if [[ -d "/usr/local/opt/coreutils/libexec/gnuman" ]]; then
-    export manpath=("/usr/local/opt/coreutils/libexec/gnuman" $path)
+    export manpath=( $manpath "/usr/local/opt/coreutils/libexec/gnuman" )
 fi
 
 # ===
@@ -146,7 +146,7 @@ fi
 # ==========================
 # pbcopy / pbpaste for Linux
 # ==========================
-if [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
+if [[ "$(uname -s)" == "Linux" ]]; then
     alias pbcopy='xclip -selection clipboard'
     alias pbpaste='xclip -selection clipboard -o'
 fi
@@ -167,37 +167,35 @@ compctl -K _pip_completion pip
 # =====
 # pyenv
 # =====
-if [[ -d $HOME/.pyenv/bin ]]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export path=(${PYENV_ROOT}/bin $path)
-    pyenv() {
-        eval "$(command pyenv init -)"
-        eval "$(command pyenv virtualenv-init -)"
-        pyenv $@
-    }
-
-    shims=("${PYENV_ROOT}"/shims/*(:t))
-
-    $shims () {
-        unset -f $shims
-        eval "$(command pyenv init -)"
-        eval "$(command pyenv virtualenv-init -)"
-        pyenv exec $0 $@
-    }
-fi
-
+#if [[ -d $HOME/.pyenv/bin ]]; then
+#    export PYENV_ROOT="$HOME/.pyenv"
+#    export path=($path ${PYENV_ROOT}/bin)
+#    pyenv() {
+#        eval "$(command pyenv init -)"
+#        eval "$(command pyenv virtualenv-init -)"
+#        pyenv $@
+#    }
+#
+#    shims=("${PYENV_ROOT}"/shims/*(:t))
+#
+#    $shims () {
+#        unset -f $shims
+#        eval "$(command pyenv init -)"
+#        eval "$(command pyenv virtualenv-init -)"
+#        pyenv exec $0 $@
+#    }
+#fi
 
 # =====
 # rbenv
 # =====
 if [[ -d $HOME/.rbenv/bin ]]; then
-  export path=(${HOME}/.rbenv/bin $path)
+  export path=( $path ${HOME}/.rbenv/bin )
   rbenv() {
     eval "$(command rbenv init -)"
     rbenv $@
   }
 fi
-
 # ====
 # stty
 # ====

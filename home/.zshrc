@@ -1,5 +1,6 @@
 # consequence of things like path_helper. See note in .zshenv
-export PATH=$GOODPATH
+path=( $goodpath )
+unset goodpath
 
 # Set to true for profiling
 PROFILE_STARTUP=false

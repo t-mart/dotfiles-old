@@ -1,19 +1,10 @@
-pathstoadd=()
+local dirpaths=( /sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin ${HOME}/bin )
 
-addifexists() {
-  [[ -d $1 ]] && pathstoadd+=($1)
-}
-
-addifexists ${HOME}/bin
-addifexists /usr/local/bin
-addifexists /usr/local/sbin
-addifexists /usr/bin
-addifexists /usr/sbin
-addifexists /bin
-addifexists /sbin
-
-# add to path
-path=($pathstoadd $path)
+for d in $dirpaths; do
+  if [[ -d "$d" ]]; then
+    path=($d $path)
+  fi
+done
 
 # remove dupes
 typeset -U path cdpath fpath manpath
@@ -22,4 +13,4 @@ typeset -U path cdpath fpath manpath
 # i do _not_ want my path reordered, thank you very much.
 # thus, we will create a proxy variable $goodpath now while our path is legit.
 # and later, in .zshrc (after osx runs path_helper), we will set path=$goodpath to revert.
-export GOODPATH=$PATH
+typeset -a goodpath=( $path )
