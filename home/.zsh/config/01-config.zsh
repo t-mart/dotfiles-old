@@ -165,28 +165,6 @@ function _pip_completion {
 compctl -K _pip_completion pip
 
 # =====
-# pyenv
-# =====
-#if [[ -d $HOME/.pyenv/bin ]]; then
-#    export PYENV_ROOT="$HOME/.pyenv"
-#    export path=($path ${PYENV_ROOT}/bin)
-#    pyenv() {
-#        eval "$(command pyenv init -)"
-#        eval "$(command pyenv virtualenv-init -)"
-#        pyenv $@
-#    }
-#
-#    shims=("${PYENV_ROOT}"/shims/*(:t))
-#
-#    $shims () {
-#        unset -f $shims
-#        eval "$(command pyenv init -)"
-#        eval "$(command pyenv virtualenv-init -)"
-#        pyenv exec $0 $@
-#    }
-#fi
-
-# =====
 # rbenv
 # =====
 if [[ -d $HOME/.rbenv/bin ]]; then
