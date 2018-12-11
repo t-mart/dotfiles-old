@@ -41,7 +41,7 @@ prompt_tim_precmd () {
 
 prompt_tim_setup () {
 
-    p_date="${BOLD_WHITE}%D{%FT%T}${NO_COLOR}"
+    p_date="${BOLD_WHITE}%D{%FT%T%Z}${NO_COLOR}"
     p_return_code="↳ %(?.${BOLD_GREEN}.${BOLD_RED})%?${NO_COLOR}"
     p_history_number="H${BOLD_YELLOW}%!${NO_COLOR}"
     p_user_at_host="${BOLD_GREEN}%n${BOLD_WHITE}@${BOLD_GREEN}%M${NO_COLOR}"
