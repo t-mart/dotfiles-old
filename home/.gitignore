@@ -14,3 +14,4 @@ Session.vim
 .idea
 *.iml
 .python-version
+node_modules
